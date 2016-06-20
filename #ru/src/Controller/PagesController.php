@@ -8,8 +8,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link      http://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
+ * @link	  http://cakephp.org CakePHP(tm) Project
+ * @since	 0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
@@ -28,38 +28,44 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
-    /**
-     * Displays a view
-     *
-     * @return void|\Cake\Network\Response
-     * @throws \Cake\Network\Exception\NotFoundException When the view file could not
-     *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
-     */
-    public function display()
-    {
-        $path = func_get_args();
+	public function initialize() {
+		parent::initialize();
+		$this->Auth->allow('display');
+	}
 
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
-        $page = $subpage = null;
+	/**
+	 * Displays a view
+	 *
+	 * @return void|\Cake\Network\Response
+	 * @throws \Cake\Network\Exception\NotFoundException When the view file could not
+	 *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
+	 */
 
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
+	 public function display()
+	{
+		$path = func_get_args();
 
-        try {
-            $this->render(implode('/', $path));
-        } catch (MissingTemplateException $e) {
-            if (Configure::read('debug')) {
-                throw $e;
-            }
-            throw new NotFoundException();
-        }
-    }
+		$count = count($path);
+		if (!$count) {
+			return $this->redirect('/');
+		}
+		$page = $subpage = null;
+
+		if (!empty($path[0])) {
+			$page = $path[0];
+		}
+		if (!empty($path[1])) {
+			$subpage = $path[1];
+		}
+		$this->set(compact('page', 'subpage'));
+
+		try {
+			$this->render(implode('/', $path));
+		} catch (MissingTemplateException $e) {
+			if (Configure::read('debug')) {
+				throw $e;
+			}
+			throw new NotFoundException();
+		}
+	}
 }
