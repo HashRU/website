@@ -8,6 +8,10 @@ class SecretController extends AppController {
 		parent::initialize();
 	}
 
+	public function isAuthorized($user = null) {
+		return $user != null;
+	}
+
 	public function index() {
 		$user = $this->request->session()->read('Auth.User');
 		var_dump($user);

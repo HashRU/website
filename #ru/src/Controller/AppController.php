@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Controller\Component\AuthComponent;
 
 /**
  * Application Controller
@@ -45,16 +46,26 @@ class AppController extends Controller
 		$this->loadComponent('Flash');
 
 		$this->loadComponent('Auth', ['authenticate' =>
-		['Ldap' =>
-			['fields' =>
+			['Ldap' => ['fields' =>
 				['username' => 'username',
 				'password' => 'password']
 			]
-		], 'loginAction' => [
-		'controller' => 'Login',
-		'action' => 'login'
-	]
-	]);
+			], 'loginAction' => [
+				'controller' => 'Login',
+				'action' => 'login'
+			]
+		]);
+
+		$this->Auth->config('authorize', ['Controller']);
+
+		$this->Auth->config('authorize', [
+			AuthComponent::ALL => ['actionPath' => 'controllers/'],
+			'Controller'
+		]);
+	}
+
+	public function isAuthorized($user = null) {
+		return true;
 	}
 
 	/**
