@@ -60,6 +60,8 @@ class PagesController extends AppController
 		}
 		$this->set(compact('page', 'subpage'));
 
+		$this->viewBuilder()->layout('default');
+
 		try {
 			$this->render(implode('/', $path));
 		} catch (MissingTemplateException $e) {
