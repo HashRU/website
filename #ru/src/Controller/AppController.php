@@ -28,7 +28,6 @@ use Cake\Controller\Component\AuthComponent;
  */
 class AppController extends Controller
 {
-
 	/**
 	 * Initialization hook method.
 	 *

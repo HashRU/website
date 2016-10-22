@@ -51,6 +51,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 	$routes->connect('/cakestatus', ['controller' => 'Pages', 'action' => 'display', 'home']);
 	$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
 	$routes->connect('/over', ['controller' => 'Pages', 'action' => 'display', 'over']);
+	$routes->connect('/admin', ['controller' => 'Admin', 'action' => 'index']);
 
 	/**
 	 * ...and connect the rest of 'Pages' controller's URLs.

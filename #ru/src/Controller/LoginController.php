@@ -4,6 +4,12 @@ namespace App\Controller;
 
 class LoginController extends AppController {
 
+	public function initialize() {
+		parent::initialize();
+
+		$this->Auth->allow('display');
+	}
+
 	public function login() {
 		if ($this->request->is('post')){
 			$user = $this->Auth->identify();
