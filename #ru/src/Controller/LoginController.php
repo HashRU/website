@@ -18,7 +18,7 @@ class LoginController extends AppController {
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			// user is not identified
-			$this->Flash->error('Your username or password is not correct');
+			$this->Flash->error(__('Your username or password is incorrect'), ['key' => 'auth']);
 		}
 	}
 

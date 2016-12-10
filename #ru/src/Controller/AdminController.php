@@ -22,7 +22,8 @@ class AdminController extends AppController
 
 		$this->loadComponent('Crud.Crud', [
 			'actions' => [
-				'index' => ['className' => '\App\Crud\Action\Index']
+				'index' => ['className' => '\App\Crud\Action\Index'],
+				'edit' => ['className' => '\App\Crud\Action\Edit']
 			]
 		]);
 	}

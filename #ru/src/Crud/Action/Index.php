@@ -4,7 +4,7 @@ namespace App\Crud\Action;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 
-class Index extends \Crud\Action\BaseAction
+class Index extends LdapBase
 {
 	/**
 	 * Default settings
@@ -28,17 +28,6 @@ class Index extends \Crud\Action\BaseAction
 		]
 	];
 
-	 private function remove_counts($arr) {
-		 foreach($arr as $key=>$val) {
-			 if($key === "count") {
-			 	unset($arr[$key]);
-			} elseif(is_array($val)) {
-				$arr[$key] = $this->remove_counts($arr[$key]);
-			}
-		}
-		return $arr;
-	}
-
 	/**
 	 * handler for HTTP GET requests
 	 *
@@ -49,28 +38,7 @@ class Index extends \Crud\Action\BaseAction
 		$subject = $this->_subject();
 		$subject->set(['success' => true, 'viewVar' => $this->_defaultConfig['viewVar']]);
 
-
-		Configure::config('default', new PhpConfig());
-		Configure::load('ldapconf', 'default');
-
-		$rootcn = Configure::read('rootcn');
-		$password = Configure::read('rootpass');
-
-		$ds = @ldap_connect('ldaps://localhost') ;
-		if (!$ds) {
-			throw \Cake\Error\FatalErrorException ('Unable to connect to LDAP host.') ;
-		}
-		ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-
-		$basedn = "dc=hashru,dc=nl";
-		$dn = $rootcn . ',' . $basedn;
-		$ldapbind = @ldap_bind($ds, $dn, $password);
-		if (!$ldapbind) {
-			if (ldap_get_option($ds, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extended_error)) {
-				var_dump("Error Binding to LDAP: $extended_error");
-			}
-			return false;
-		}
+		$ds = $this->ldap_login();
 
 		$searchdn = "ou=users,dc=hashru,dc=nl";
 		$search_result = ldap_search($ds, $searchdn, "(objectclass=posixAccount)");
@@ -79,10 +47,9 @@ class Index extends \Crud\Action\BaseAction
 			throw \Cake\Error\FatalErrorException ('Failed to get relevant ldap entries') ;
 		}
 
-		$entries = $this->remove_counts($entries);
+		$this->ldap_logout($ds);
 
-		// Then close it and return the authenticated user
-		ldap_unbind ($ds) ;
+		$entries = $this->remove_counts($entries);
 
 		$controller = $this->_controller();
 		$subject->set([$this->_defaultConfig['viewVar'] => $entries]);
