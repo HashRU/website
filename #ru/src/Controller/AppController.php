@@ -80,5 +80,14 @@ class AppController extends Controller
 		) {
 			$this->set('_serialize', true);
 		}
+
+		$user = $this->Auth->user();
+		$isAdmin = false;
+		if($user !== null) {
+			if($user['employeeType'][0] === 'Admin') {
+				$isAdmin = true;
+			}
+		}
+		$this->set('isAdmin', $isAdmin);
 	}
 }

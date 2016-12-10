@@ -38,6 +38,12 @@
 			<li><a href="/">Home</a></li>
 			<li><a href="https://pics.hashru.nl">Pics</a></li>
 			<li><a href="/over">Over</a></li>
+			<li><a href="/login">Login</a></li>
+			<?php
+			if($isAdmin) {
+				echo '<li><a href="/admin">Admin</a></li>';
+			}
+			?>
 		</ul>
 	</header>
 
