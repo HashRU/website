@@ -17,11 +17,11 @@ RUN chown -R ldap:ldap /var/lib/openldap/openldap-data
 
 RUN /usr/bin/slapd -u ldap -g ldap -d255 || true
 
-# RUN chown -R ldap:ldap /etc/openldap/slapd.d
-
 RUN slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/ -d255 || true
 
 RUN chown -R ldap:ldap /etc/openldap/slapd.d
+
+RUN chown -R ldap:ldap /run/openldap
 
 # RUN /usr/bin/slapd -u ldap -g ldap -d255 && ldapadd -D "dc=hashru,dc=nl" -f /etc/openldap/hashru.nl.ldif -w hashru -x
 
