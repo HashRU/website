@@ -15,13 +15,13 @@ RUN cp /var/lib/openldap/openldap-data/DB_CONFIG.example /var/lib/openldap/openl
 
 RUN chown -R ldap:ldap /var/lib/openldap/openldap-data
 
-RUN /usr/bin/slapd -u ldap -g ldap
+RUN /usr/bin/slapd -u ldap -g ldap -d255 || true
 
-RUN killall slapd 
+RUN slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/ -d255 || true
 
-RUN slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/
+COPY hashru.nl.ldif hashru.nl.ldif 
 
-RUN ldapadd -D "dc=hashru,dc=nl" -f hashru.nl.ldif -W -x
+RUN /usr/bin/slapd -u ldap -g ldap -d255 && ldapadd -D "dc=hashru,dc=nl" -f hashru.nl.ldif -w hashru -x
 
 RUN sudo -u ldap slapindex
 

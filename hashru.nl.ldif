@@ -1,0 +1,104 @@
+dn: dc=hashru,dc=nl
+objectClass: dcObject
+objectClass: organization
+dc: hashru
+o: Hashru
+description: Example directory
+structuralObjectClass: organization
+entryUUID: 591696d6-c9f2-4c67-ae07-3572cf8ee279
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20160421200046Z
+entryCSN: 20160421200046.499855Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20160421200046Z
+
+dn: cn=root,dc=hashru,dc=nl
+objectClass: organizationalRole
+cn: root
+description: Directory Manager
+structuralObjectClass: organizationalRole
+entryUUID: e44a963e-e5a5-408f-af69-e99aec38df34
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20160421200146Z
+entryCSN: 20160421200146.668856Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20160421200146Z
+
+dn: ou=groups,dc=hashru,dc=nl
+ou: groups
+objectClass: organizationalUnit
+objectClass: top
+structuralObjectClass: organizationalUnit
+entryUUID: a3c5ffc5-b977-42a6-81ad-b4a7dd089df5
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20160429081409Z
+entryCSN: 20160429081409.637363Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20160429081409Z
+
+dn: ou=users,dc=hashru,dc=nl
+ou: users
+objectClass: organizationalUnit
+objectClass: top
+structuralObjectClass: organizationalUnit
+entryUUID: 3b48aab8-8e64-4e9c-944b-a2455025445f
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20160429081507Z
+entryCSN: 20160429081507.361066Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20160429081507Z
+
+dn: cn=users,ou=groups,dc=hashru,dc=nl
+cn: users
+gidNumber: 500
+objectClass: posixGroup
+objectClass: top
+structuralObjectClass: posixGroup
+entryUUID: 06dffb3b-ab2f-4b03-811a-077a26d06ee2
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20160429081753Z
+entryCSN: 20160429081753.928758Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20160429081753Z
+
+dn: uid=roflincopter,ou=users,dc=hashru,dc=nl
+structuralObjectClass: inetOrgPerson
+entryUUID: 4c08a438-c7a8-47de-bff9-aa4cb1767281
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20161125143340Z
+givenName: Dennis
+sn: Brentjes
+cn: Dennis Brentjes
+uid: roflincopter
+gidNumber: 500
+homeDirectory: /home/users/roflincopter
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1000
+employeeType: Admin
+userPassword:: e1NTSEF9aUo4NWZXWEwzZUkrN2J6cThuSVM4ZUZLckFtYUFSMW0=
+entryCSN: 20161210132403.245912Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20161210132403Z
+
+dn: uid=nixxx,ou=users,dc=hashru,dc=nl
+structuralObjectClass: inetOrgPerson
+entryUUID: 78f5c209-2d57-4a95-a91e-11272003d341
+creatorsName: cn=root,dc=hashru,dc=nl
+createTimestamp: 20161125143444Z
+givenName: Nick
+sn: Overdijk
+cn: Nick Overdijk
+uid: nixxx
+userPassword:: e1NTSEF9aUo4NWZXWEwzZUkrN2J6cThuSVM4ZUZLckFtYUFSMW0=
+uidNumber: 1001
+gidNumber: 500
+homeDirectory: /home/users/nixxx
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+entryCSN: 20161210133914.127981Z#000000#000#000000
+modifiersName: cn=root,dc=hashru,dc=nl
+modifyTimestamp: 20161210133914Z
+
