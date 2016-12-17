@@ -21,8 +21,10 @@ RUN slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/ -d255 || true
 
 RUN chown -R ldap:ldap /etc/openldap/slapd.d
 
+RUN mkdir -p /run/openldap
+
 RUN chown -R ldap:ldap /run/openldap
 
-RUN /usr/bin/slapd -u ldap -g ldap && ldapadd -D "dc=hashru,dc=nl" -f /etc/openldap/hashru.nl.ldif -whashru -x
+#RUN /usr/bin/slapd -u ldap -g ldap && ldapadd -D "dc=hashru,dc=nl" -f /etc/openldap/hashru.nl.ldif -whashru -x
 
-# RUN sudo -u ldap slapindex
+#RUN sudo -u ldap slapindex
