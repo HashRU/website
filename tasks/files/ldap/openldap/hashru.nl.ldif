@@ -1,0 +1,49 @@
+dn: dc=hashru,dc=nl
+objectClass: dcObject
+objectClass: organization
+dc: hashru
+o: Hashru
+description: Example directory
+
+dn: ou=groups,dc=hashru,dc=nl
+ou: groups
+objectClass: organizationalUnit
+objectClass: top
+
+dn: ou=users,dc=hashru,dc=nl
+ou: users
+objectClass: organizationalUnit
+objectClass: top
+
+dn: cn=users,ou=groups,dc=hashru,dc=nl
+cn: users
+gidNumber: 500
+objectClass: posixGroup
+objectClass: top
+
+dn: uid=roflincopter,ou=users,dc=hashru,dc=nl
+givenName: Dennis
+sn: Brentjes
+cn: Dennis Brentjes
+uid: roflincopter
+gidNumber: 500
+homeDirectory: /home/users/roflincopter
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1000
+employeeType: Admin
+userPassword:: e1NTSEF9aUo4NWZXWEwzZUkrN2J6cThuSVM4ZUZLckFtYUFSMW0=
+
+dn: uid=nixxx,ou=users,dc=hashru,dc=nl
+givenName: Nick
+sn: Overdijk
+cn: Nick Overdijk
+uid: nixxx
+userPassword:: e1NTSEF9aUo4NWZXWEwzZUkrN2J6cThuSVM4ZUZLckFtYUFSMW0=
+uidNumber: 1001
+gidNumber: 500
+homeDirectory: /home/users/nixxx
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top

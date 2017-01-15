@@ -4,7 +4,6 @@ services:
         build:
             context: ./tasks/docker/ldap
         volumes:
-            - "./tasks/files/ldap/slapd.conf:/etc/openldap/slapd.conf"
-            - "./tasks/files/ldap/hashru.nl.ldif:/etc/openldap/hashru.nl.ldif"
-        command: bash
-#        command: /usr/bin/slapd -u ldap -g ldap -d255
+            - "./tasks/files/ldap/openldap:/etc/openldap"
+#        command: /usr/bin/bash
+        command: bash -c "/usr/bin/slapd -u ldap -g ldap -h 'ldaps:///' && killall slapd && slaptest -f /etc/openldap/slapd.conf -F /var/lib/openldap/slapd.d/ && chown -R ldap:ldap /var/lib/openldap/slapd.d && /usr/bin/slapd -u ldap -g ldap -h 'ldaps:///' -F '/var/lib/openldap/slapd.d' && ldapadd -D 'cn=root,dc=hashru,dc=nl' -f /etc/openldap/hashru.nl.ldif -w 'hashru' -x && bash"
